@@ -13,9 +13,11 @@ export const App = React.createClass({
   render() {
     return (
       <div className='students-component'>
-        <table>
+        <table className='students-table'>
           { this.renderStudentHeader() }
-          { this.renderStudents() }
+          <tbody>
+            { this.renderStudents() }
+          </tbody>
         </table>
       </div>
     );
@@ -23,13 +25,15 @@ export const App = React.createClass({
 
   renderStudentHeader() {
     return (
-      <tr>
-        <th>Id</th>
-        <th>Matrícula</th>
-        <th>Nombre</th>
-        <th>Condición</th>
-      </tr>
-    )
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Matrícula</th>
+          <th>Nombre</th>
+          <th>Condición</th>
+        </tr>
+      </thead>
+    );
   },
 
   renderStudents() {

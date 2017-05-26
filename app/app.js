@@ -16,7 +16,6 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import { Router, Route, browserHistory } from 'react-router';
 import { syncHistoryWithStore, routerMiddleware, routerReducer } from 'react-router-redux';
-import FontFaceObserver from 'fontfaceobserver';
 
 
 // Polyfill for native fetch api
@@ -39,6 +38,8 @@ import { AppContainer } from 'components/App';
 import appReducer from './reducers/app';
 import thunk from 'redux-thunk';
 
+import './../styles/app.scss';
+
 const reducers = combineReducers({
   routing: routerReducer,
   app: appReducer
@@ -46,17 +47,6 @@ const reducers = combineReducers({
 const middleware = applyMiddleware(thunk, routerMiddleware(browserHistory));
 const store = createStore(reducers, middleware);
 const history = syncHistoryWithStore(browserHistory, store);
-
-// Observe loading of Open Sans (to remove open sans, remove the <link> tag in
-// the index.html file and this observer)
-const openSansObserver = new FontFaceObserver('Open Sans', {});
-
-// When Open Sans is loaded, add a font-family using Open Sans to the body
-openSansObserver.load().then(() => {
-  document.body.classList.add('fontLoaded');
-}, () => {
-  document.body.classList.remove('fontLoaded');
-});
 
 
 const render = () => {

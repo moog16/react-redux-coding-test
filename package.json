@@ -221,6 +221,7 @@
     "ip": "1.1.4",
     "lodash": "4.17.2",
     "minimist": "1.2.0",
+    "node-sass": "^4.5.3",
     "react": "15.4.1",
     "react-dom": "15.4.1",
     "react-helmet": "3.2.2",
@@ -235,6 +236,7 @@
     "redux-thunk": "^2.2.0",
     "reselect": "2.5.4",
     "sanitize.css": "4.1.0",
+    "sass-loader": "^6.0.5",
     "styled-components": "1.1.2",
     "warning": "3.0.0",
     "whatwg-fetch": "2.0.1"
