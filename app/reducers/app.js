@@ -7,7 +7,7 @@ const initialData = fromJS({
 export default function (state = initialData, action = {}) {
   switch (action.type) {
     case 'SET_STUDENTS':
-      return state.set('students', fromJS(action.data));
+      return state.set('students', fromJS(action.students));
     default:
       return state;
   }

@@ -1,18 +1,61 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { fetchStudents } from './../action-creators/app';
 
 
 export const App = React.createClass({
 
   componentWillMount() {
+    this.props.fetchStudents();
   },
 
   render() {
     return (
-      <div>
-        
+      <div className='students-component'>
+        <table>
+          { this.renderStudentHeader() }
+          { this.renderStudents() }
+        </table>
       </div>
+    );
+  },
+
+  renderStudentHeader() {
+    return (
+      <tr>
+        <th>Id</th>
+        <th>Matrícula</th>
+        <th>Nombre</th>
+        <th>Condición</th>
+      </tr>
+    )
+  },
+
+  renderStudents() {
+    const { students } = this.props;
+
+    if(students.isEmpty()) return;
+
+    return (
+      students.map(student => {
+        return (
+          <tr key={student.get('id')}>
+            <td>
+              { student.get('id') }
+            </td>
+            <td>
+              { student.get('registration_number') }
+            </td>
+            <td>
+              { `${student.get('name')} ${student.get('last_name')}` }
+            </td>
+            <td>
+              { student.get('status') }
+            </td>
+          </tr>
+        );
+      })
     );
   }
 });
@@ -20,11 +63,13 @@ export const App = React.createClass({
 
 function mapStateToProps(state) {
   return {
+    students: state.app.get('students')
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
+    fetchStudents
   }, dispatch);
 }
 
